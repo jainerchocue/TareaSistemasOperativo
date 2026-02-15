@@ -77,7 +77,11 @@
 
                     <li>Control de acceso y permisos
                         <div class="linea-placeholder"></div>
-                        <p>Hola mundo</p>
+                        <p>Define  los permisos  para realziar lectura, escritura, ejecucion  y haciendo control de esos procesos para tener seguridad  y ademas como beneficios  es para protejer con el acceso no autorizado</p>
+                        <div class="linea-placeholder mediana"></div>
+                        <p>Bloque el acceso  a las personas no autorizadas</p>
+                        <div class="linea-placeholder mediana"></div>
+                        <p>Permite  el acceso a los usuario  adecuado y que tiene el privilegio</p>
                         <div class="linea-placeholder mediana"></div>
                     </li>
 
@@ -117,10 +121,10 @@
                 </div>
                 <!-- Aquí explica cada componente de la estructura -->
                 <ul>
-                    <li>Archivos:</li>
-                    <li>Directorios:</li>
-                    <li>Metadatos:</li>
-                    <li>Bloques:</li>
+                    <li>Archivos:El archivo es una secuencia  ordenada de bits que alamcenan  datos como imagenes , texto, programas</li>
+                    <li>Directorios:Son contenedores  especiales que rganizan  archivos  y subdirecorios en una estctura jararquica comenzando desde la raiz</li>
+                    <li>Metadatos:SOn datos de referencias de  archivos  dodne  tiene comod atos  de permiso de accesos, proiedad, fecha de creacion, d=fecha de actualzaiciones, tamanio y ubicaciones en disco</li>
+                    <li>Bloques:Es la cantidad minimas de la unidad de alacenamientos en discos dodne se dividen  lso datos  de archivos  de forma inmediato</li>
                 </ul>
             </div>
         </div>
@@ -148,9 +152,9 @@
                 </div>
                 <!-- Aquí describe cada método de organización -->
                 <ul>
-                    <li>Contigua:</li>
-                    <li>Enlazada:</li>
-                    <li>Indexada:</li>
+                    <li>Contigua:Una forma de  asignacion  de blouqes dentrod e un disco  fisicamente  consecutivas a un archivo desde  el inico hasta el final </li>
+                    <li>Enlazada:Cada archivo contiene  un puntero  al siguiente bloque , formando una lista de enalzados  dispersas en el disco, adema sno necesita bloques contiguo</li>
+                    <li>Indexada:Utiliza una tabla de indices  con bloque indice o i-nodo extendido que contienen punteros  a todos los bloques de archivos, el indice se alamacena  en un lugar fijo como un meta dat del archivo.</li>
                 </ul>
             </div>
         </div>
@@ -177,9 +181,26 @@
                 </div>
                 <!-- Aquí explica las características de cada sistema -->
                 <ul>
-                    <li>FAT32:</li>
-                    <li>NTFS:</li>
-                    <li>ext4:</li>
+                    <li>FAT32:Sistema de archivos antiguous pero muy compatible</li>
+                    <p>Siple y lijero: compatible con casi todo  limite de 4gb por archivo y limite de 2tb por particion</p>
+                    <p>No tiene journaling</p>
+                    <p>Uso idela em memoria usb, sd y dispositivo  que necesitan uso universl</p>
+                    <li>NTFS:Sistema  de archivos modernos de windows</li>
+                    <p>Soporta para archivos de cualquier tamanio </p>
+                    <p>journaling (recuperacion ante fallos de energias)</p>
+                    <p>Permisos de seguridad (control de acceso por usuario )</p>
+                    <p>Comprension y  encriptacion  nativa</p>
+                    <p>uso ideal: Discos durso internos de windows, particiones de sistemas</p>
+                    <p>Desventajas: Compatibilidad limitada  en mac(solo lectura) y algunos dispositivos</p>
+                    <li>ext4:Sistema de archivos estandar de linux</li>
+                    <p>Caracteristicas</p>
+                    <p>Alto rendimiento y eficiencia</p>
+                    <p>Journaling con checksums(mayor integridad)</p>
+                    <p>Soporte para volumenes  de hasta  un 1 EB  y archivos de 16 TB</p>
+                    <p>Menor fragmentacion que FAT32</p>
+                    <p>conpatibilidad  con versiones anteriores ext2 / ext3</p>
+                    <p>Uso Ideal: sistemas de linux , servidores, particiones de datos en linux</p>
+                    <p>desventajas: Compatibilidad limitada en windows (requiere  software adicional  como wsl para funcionar )</p>
                 </ul>
             </div>
         </div>
