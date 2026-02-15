@@ -433,6 +433,16 @@
                     <circle cx="12" cy="12" r="2" />
                 </svg>
             </div>
+            <!-- Block 5: Métodos de Asignación -->
+            <div class="bloque-contenido">
+                <div class="contenedor-icono">
+                    <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+                        <circle cx="2" cy="7" r="1" fill="currentColor" />
+                        <circle cx="2" cy="12" r="1" fill="currentColor" />
+                        <circle cx="2" cy="17" r="1" fill="currentColor" />
+                    </svg>
+                </div>
                 <div class="area-texto">
                     <h3>Métodos de Asignación</h3>
                     <p>Estrategias para guardar los datos en el disco:</p>
@@ -501,18 +511,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-
-        <div class="bloque-contenido">
-            <div class="numero-bloque">6</div>
-
-            <div class="contenedor-icono">
-                <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="#0f3460" stroke-width="2">
-                    <circle cx="12" cy="12" r="10" />
-                    <circle cx="12" cy="12" r="6" />
-                    <circle cx="12" cy="12" r="2" />
-                </svg>
-            </div>
 
             <div class="area-texto">
                 <h3>Tipos de Sistemas de Archivos</h3>
@@ -559,7 +557,7 @@
         </div>
 
         <div class="bloque-contenido">
-            <div class="numero-bloque">7</div>
+            <div class="numero-bloque">6</div>
 
             <div class="contenedor-icono">
                 <svg class="icono-svg" viewBox="0 0 24 24" fill="none" stroke="#0f3460" stroke-width="2">
