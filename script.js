@@ -246,12 +246,15 @@ document.addEventListener('DOMContentLoaded', function() {
         navContainer.className = 'nav-container';
         navContainer.style.cssText = `
             position: fixed;
-            bottom: 40px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 20px;
-            z-index: 1001;
+            z-index: 10001;
+            background: transparent;
+            padding: 0;
+            border-radius: 50px;
         `;
         
         const btnAnterior = document.createElement('button');
@@ -308,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         navContainer.appendChild(btnAnterior);
         navContainer.appendChild(btnSiguiente);
-        bloque.appendChild(navContainer);
+        document.body.appendChild(navContainer);
 
         // Scroll al inicio
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -325,8 +328,8 @@ document.addEventListener('DOMContentLoaded', function() {
         bloqueActivo.classList.remove('bloque-maximizado');
         bloqueActivo.style.cssText = '';
 
-        // Remover botones de navegación
-        const navContainer = bloqueActivo.querySelector('.nav-container');
+        // Remover botones de navegación del body
+        const navContainer = document.querySelector('.nav-container');
         if (navContainer) navContainer.remove();
 
         // Mostrar todos los elementos
