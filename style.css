@@ -791,7 +791,7 @@ body {
 /* Bloque vertical principal */
 .bloque-vertical {
     position: relative;
-    padding: 3rem 2rem;
+    padding: 2rem 1.5rem;
     border-bottom: 2px dashed rgba(0, 101, 204, 0.15);
     overflow: visible;
     transition: all 0.4s ease;
@@ -815,41 +815,7 @@ body {
     border-bottom: none;
 }
 
-/* Marcador (números laterales 1-6) */
-.marcador-bloque {
-    position: absolute;
-    left: -40px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 800;
-    box-shadow: 0 10px 28px rgba(0, 61, 130, 0.25);
-    border: 3px solid white;
-    z-index: 5;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
 
-.bloque-vertical:hover .marcador-bloque {
-    transform: translateY(-50%) scale(1.1) rotate(10deg);
-    box-shadow: 0 16px 40px rgba(0, 61, 130, 0.35);
-}
-
-@media (max-width: 768px) {
-    .marcador-bloque {
-        position: static;
-        transform: none;
-        margin: 0 0 2rem 0;
-    }
-}
 
 /* Contenedor principal del bloque */
 .contenido-bloque {
@@ -1105,6 +1071,13 @@ body {
     border: 2px solid rgba(0, 101, 204, 0.1);
     transition: all 0.3s ease;
     position: relative;
+}
+
+.subtema-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
 }
 
 /* Variaciones de posición y rotación sutil */

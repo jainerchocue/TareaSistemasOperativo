@@ -4,47 +4,160 @@ console.log('Script cargado correctamente');
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM cargado');
     
-    const bloques = document.querySelectorAll('.bloque-contenido');
+    const bloques = document.querySelectorAll('.bloque-vertical');
     console.log('Bloques encontrados:', bloques.length);
     
     const encabezado = document.querySelector('.encabezado-principal');
     const piePagina = document.querySelector('.pie-pagina');
     let bloqueActivo = null;
 
+    // Sistema de zoom para imágenes
+    const todasLasImagenes = document.querySelectorAll('img');
+    console.log('Imágenes encontradas:', todasLasImagenes.length);
+    
+    todasLasImagenes.forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.style.transition = 'transform 0.3s ease';
+        
+        img.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('Click en imagen:', this.src);
+            abrirImagenZoom(this.src, this.alt);
+        });
+        
+        img.addEventListener('mouseenter', function() {
+            if (!this.closest('.modal-zoom-imagen')) {
+                this.style.transform = 'scale(1.05)';
+            }
+        });
+        
+        img.addEventListener('mouseleave', function() {
+            if (!this.closest('.modal-zoom-imagen')) {
+                this.style.transform = 'scale(1)';
+            }
+        });
+    });
+
+    // Función para abrir imagen con zoom
+    function abrirImagenZoom(src, alt) {
+        console.log('Abriendo zoom para:', src);
+        
+        const modalZoom = document.createElement('div');
+        modalZoom.className = 'modal-zoom-imagen';
+        modalZoom.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+            cursor: zoom-out;
+        `;
+        
+        const contenedorImg = document.createElement('div');
+        contenedorImg.style.cssText = `
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: zoomIn 0.3s ease;
+        `;
+        
+        const imagen = document.createElement('img');
+        imagen.src = src;
+        imagen.alt = alt;
+        imagen.style.cssText = `
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            cursor: default;
+        `;
+        
+        const btnCerrarZoom = document.createElement('button');
+        btnCerrarZoom.innerHTML = '✕';
+        btnCerrarZoom.style.cssText = `
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.5);
+            transition: all 0.3s ease;
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        
+        btnCerrarZoom.onmouseenter = function() {
+            this.style.transform = 'scale(1.1) rotate(90deg)';
+            this.style.background = '#dc2626';
+        };
+        
+        btnCerrarZoom.onmouseleave = function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+            this.style.background = '#ef4444';
+        };
+        
+        const cerrarModal = function() {
+            console.log('Cerrando modal zoom');
+            modalZoom.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                if (modalZoom.parentNode) {
+                    modalZoom.remove();
+                }
+            }, 300);
+        };
+        
+        btnCerrarZoom.onclick = function(e) {
+            e.stopPropagation();
+            cerrarModal();
+        };
+        
+        modalZoom.onclick = function(e) {
+            if (e.target === modalZoom) {
+                cerrarModal();
+            }
+        };
+        
+        contenedorImg.appendChild(imagen);
+        modalZoom.appendChild(contenedorImg);
+        modalZoom.appendChild(btnCerrarZoom);
+        document.body.appendChild(modalZoom);
+        
+        // Cerrar con ESC
+        const cerrarConEsc = function(e) {
+            if (e.key === 'Escape') {
+                cerrarModal();
+                document.removeEventListener('keydown', cerrarConEsc);
+            }
+        };
+        document.addEventListener('keydown', cerrarConEsc);
+    }
+
     // Agregar cursor pointer y evento click a los bloques
     bloques.forEach((bloque, index) => {
         bloque.style.cursor = 'pointer';
         bloque.style.transition = 'all 0.3s ease';
         
-        // Agregar indicador visual
-        const indicador = document.createElement('div');
-        indicador.className = 'indicador-click';
-        indicador.innerHTML = '👆 Click para expandir';
-        indicador.style.cssText = `
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-size: 0.95em;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-            z-index: 5;
-            pointer-events: none;
-            animation: pulseIndicador 2s ease-in-out infinite;
-        `;
-        bloque.appendChild(indicador);
-        
         // Event listener para click
         bloque.addEventListener('click', function(e) {
             console.log('Click en bloque', index + 1);
             
-            // Evitar que el click en botones active la maximización
-            if (e.target.closest('.btn-cerrar') || 
-                e.target.closest('.btn-nav')) {
+            // Evitar que el click en imágenes active la maximización
+            if (e.target.tagName === 'IMG') {
                 return;
             }
             
@@ -54,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Hover effect
         bloque.addEventListener('mouseenter', function() {
             if (!bloqueActivo) {
-                this.style.transform = 'scale(1.02)';
+                this.style.transform = 'scale(1.01)';
             }
         });
         
@@ -104,49 +217,29 @@ document.addEventListener('DOMContentLoaded', function() {
             overflow-y: auto !important;
             margin: 0 !important;
             border-radius: 0 !important;
-            padding: 80px 60px !important;
+            padding: 100px 60px 120px 60px !important;
             display: flex !important;
             flex-direction: column !important;
-            justify-content: center !important;
+            justify-content: flex-start !important;
+            background: white !important;
         `;
         
-        // Ocultar indicador
-        const indicador = bloque.querySelector('.indicador-click');
-        if (indicador) {
-            indicador.style.display = 'none';
-        }
-
-        // Agregar botón de cerrar
-        const btnCerrar = document.createElement('button');
-        btnCerrar.className = 'btn-cerrar';
-        btnCerrar.innerHTML = '✕ Cerrar';
-        btnCerrar.style.cssText = `
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-            z-index: 1001;
-            transition: all 0.3s ease;
-        `;
-        btnCerrar.onmouseenter = function() {
-            this.style.transform = 'scale(1.05)';
-        };
-        btnCerrar.onmouseleave = function() {
-            this.style.transform = 'scale(1)';
-        };
-        btnCerrar.onclick = (e) => {
-            e.stopPropagation();
-            minimizarTodo();
-        };
-        bloque.appendChild(btnCerrar);
+        // Ajustar títulos para que se vean bien
+        const titulos = bloque.querySelectorAll('.titulo-bloque');
+        titulos.forEach(titulo => {
+            titulo.style.fontSize = '2.5rem';
+            titulo.style.marginTop = '0';
+            titulo.style.marginBottom = '2rem';
+            titulo.style.textAlign = 'center';
+        });
+        
+        // Ajustar subtítulos descriptivos
+        const subtitulos = bloque.querySelectorAll('.con-desc-sis-arch');
+        subtitulos.forEach(sub => {
+            sub.style.fontSize = '1.2rem';
+            sub.style.textAlign = 'center';
+            sub.style.marginBottom = '2rem';
+        });
 
         // Agregar botones de navegación
         const navContainer = document.createElement('div');
@@ -232,17 +325,9 @@ document.addEventListener('DOMContentLoaded', function() {
         bloqueActivo.classList.remove('bloque-maximizado');
         bloqueActivo.style.cssText = '';
 
-        // Remover botones
-        const btnCerrar = bloqueActivo.querySelector('.btn-cerrar');
+        // Remover botones de navegación
         const navContainer = bloqueActivo.querySelector('.nav-container');
-        if (btnCerrar) btnCerrar.remove();
         if (navContainer) navContainer.remove();
-
-        // Mostrar indicador
-        const indicador = bloqueActivo.querySelector('.indicador-click');
-        if (indicador) {
-            indicador.style.display = 'block';
-        }
 
         // Mostrar todos los elementos
         encabezado.style.display = 'block';
@@ -294,17 +379,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Agregar animación CSS
     const style = document.createElement('style');
     style.textContent = `
-        @keyframes pulseIndicador {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.05); }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        .bloque-contenido:hover .indicador-click {
-            transform: translateX(-50%) scale(1.1) !important;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
     `;
     document.head.appendChild(style);
 
     console.log('Sistema de presentación interactiva cargado ✓');
+    console.log('Sistema de zoom de imágenes cargado ✓');
 });
