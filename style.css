@@ -32,12 +32,6 @@
     --font-body: 'Inter', sans-serif;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: var(--font-body);
     background: linear-gradient(180deg, #00325a 0%, #005080 25%, #008fb3 50%, #00d4ff 100%);
@@ -1409,4 +1403,241 @@ body {
 .con-desc-sis-arch {
     margin: 20px;
 
+}
+
+/* ===============================================
+   ESTILOS ESPECÍFICOS PARA BLOQUES - OPTIMIZADO
+   =============================================== */
+
+/* ===== LAYOUTS BASE ===== */
+.contenido-bloque {
+    width: 100%;
+}
+
+.contenido-una-columna {
+    display: block;
+    width: 100%;
+}
+
+.contenido-dos-columnas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    align-items: center;
+}
+
+.contenedor-texto-principal {
+    width: 100%;
+    display: block;
+}
+
+.grid-dos-columnas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.grid-tres-columnas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* ===== BLOQUE 1: DEFINICIÓN ===== */
+.bloque-definicion .contenido-dos-columnas {
+    padding: 2rem;
+}
+
+.contenedor-imagen-izquierda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.imagen-principal {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 101, 204, 0.15);
+}
+
+.contenedor-texto-derecha {
+    padding: 1rem;
+}
+
+.bloque-definicion .titulo-bloque {
+    text-align: left;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.caja-descripcion {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid rgba(0, 101, 204, 0.1);
+}
+
+.texto-descripcion {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0;
+}
+
+/* ===== BLOQUES 2, 3, 5, 6: TARJETAS ===== */
+.titulo-bloque {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.subtitulo-seccion {
+    font-size: 0.95rem;
+    margin: 0 0 2rem 0;
+    color: var(--color-text-light);
+    text-align: center;
+}
+
+/* Tarjetas generales */
+.subtema-item {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.texto-subtema {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    height: 100%;
+}
+
+.titulo-tarjeta {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.descripcion-tarjeta {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-text-light);
+    text-align: center;
+}
+
+/* Imágenes en tarjetas - TODAS CON LA MISMA ALTURA */
+.imagen-tarjeta,
+.imagen-componente {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+}
+
+/* ===== BLOQUE 4: MÉTODOS (3 COLUMNAS) ===== */
+.bloque-metodos .titulo-bloque {
+    margin-bottom: 1rem;
+}
+
+.tarjeta-metodo {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo-metodo {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    text-align: center;
+    font-weight: 700;
+}
+
+.imagen-metodo {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.descripcion-metodo {
+    font-size: 0.95rem;
+    text-align: center;
+    line-height: 1.5;
+    color: var(--color-text-light);
+}
+
+/* ===== RESPONSIVE - TABLET ===== */
+@media (max-width: 1024px) {
+    .grid-tres-columnas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== RESPONSIVE - MOBILE ===== */
+@media (max-width: 768px) {
+    .contenido-dos-columnas {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+    
+    .grid-dos-columnas,
+    .grid-tres-columnas {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .subtema-item {
+        padding: 1rem;
+    }
+    
+    .titulo-bloque {
+        font-size: 1.5rem !important;
+    }
+    
+    .subtitulo-seccion {
+        font-size: 0.85rem !important;
+    }
+    
+    .imagen-tarjeta,
+    .imagen-componente {
+        height: 120px;
+    }
+    
+    .imagen-metodo {
+        height: 150px;
+    }
+}
+
+/* ===== RESPONSIVE - SMALL MOBILE ===== */
+@media (max-width: 480px) {
+    .caja-descripcion {
+        padding: 1rem;
+    }
+    
+    .texto-descripcion {
+        font-size: 0.95rem;
+    }
+    
+    .imagen-tarjeta,
+    .imagen-componente {
+        height: 100px;
+    }
+    
+    .imagen-metodo {
+        height: 120px;
+    }
 }
