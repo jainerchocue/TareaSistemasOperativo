@@ -771,15 +771,128 @@ body {
     }
 
     .titulo-infografia {
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+
+    .subtitulo-infografia {
+        font-size: 1rem;
+    }
+
+    .encabezado-principal {
+        padding: 3rem 1.5rem;
     }
 
     .bloque-contenido {
-        padding: 3rem 1.5rem;
+        padding: 2rem 1rem;
     }
 
     .area-texto li {
         padding: 1.5rem;
+    }
+
+    .subtemas-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    .titulo-bloque {
+        font-size: 1.5rem !important;
+        text-align: center !important;
+    }
+
+    .con-desc-sis-arch {
+        font-size: 0.85rem !important;
+        margin: 10px 0 !important;
+    }
+
+    .subtema-item {
+        padding: 1rem !important;
+    }
+
+    .texto-subtema h4 {
+        font-size: 1rem !important;
+    }
+
+    .texto-subtema p {
+        font-size: 0.85rem !important;
+    }
+
+    .pie-pagina {
+        padding: 2rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Tablet Responsiveness */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .infografia-contenedor {
+        max-width: 90%;
+    }
+
+    .titulo-infografia {
+        font-size: 2.8rem;
+    }
+
+    .encabezado-principal {
+        padding: 4rem 2rem;
+    }
+
+    .bloque-contenido {
+        padding: 3rem 2rem;
+    }
+
+    .subtemas-grid {
+        gap: 1.2rem;
+    }
+
+    .titulo-bloque {
+        font-size: 1.7rem;
+    }
+}
+
+/* Small Mobile Responsiveness */
+@media (max-width: 480px) {
+    .titulo-infografia {
+        font-size: 1.5rem;
+    }
+
+    .subtitulo-infografia {
+        font-size: 0.85rem;
+    }
+
+    .encabezado-principal {
+        padding: 2rem 1rem;
+    }
+
+    .bloque-vertical {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .titulo-bloque {
+        font-size: 1.3rem !important;
+    }
+
+    .subtema-item {
+        padding: 0.75rem !important;
+    }
+
+    .texto-subtema h4 {
+        font-size: 0.95rem !important;
+    }
+
+    .texto-subtema p {
+        font-size: 0.8rem !important;
+    }
+
+    .numero-subtema {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 0.9rem !important;
+    }
+
+    .pie-pagina {
+        padding: 1.5rem 0.75rem;
+        font-size: 0.75rem;
     }
 }
 
@@ -836,16 +949,65 @@ body {
 
 @media (max-width: 768px) {
     .contenido-bloque {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
     }
 
     .bloque-vertical:nth-child(even) .contenido-bloque {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
     }
 
     .bloque-vertical:nth-child(even) .contenedor-texto-principal {
         order: initial;
+    }
+
+    .subtemas-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .contenedor-imagen-principal {
+        min-height: 200px;
+    }
+
+    .bloque-vertical {
+        padding: 2rem 1rem;
+    }
+
+    .titulo-bloque {
+        font-size: 1.5rem;
+    }
+
+    .placeholder-imagen {
+        font-size: 3rem;
+    }
+
+    .subtema-item {
+        padding: 1rem;
+    }
+
+    .numero-subtema {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Tablet adjustments for grid layouts */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .subtemas-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+/* Small mobile - single column for everything */
+@media (max-width: 480px) {
+    .contenedor-imagen-principal {
+        min-height: 150px;
+    }
+
+    .subtema-item img {
+        height: 120px !important;
     }
 }
 
@@ -1057,7 +1219,46 @@ body {
 
 @media (max-width: 768px) {
     .subtemas-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+    }
+
+    .bloque-vertical {
+        padding: 2rem 1rem;
+    }
+
+    .titulo-bloque {
+        font-size: 1.5rem;
+    }
+
+    .contenedor-imagen-principal {
+        min-height: 200px;
+    }
+
+    .placeholder-imagen {
+        font-size: 3rem;
+    }
+
+    .subtema-item {
+        padding: 1rem;
+    }
+
+    .numero-subtema {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Responsive for Métodos de Organización - 3 column grid */
+@media (max-width: 1024px) {
+    .contenedor-texto-principal > div[style*="grid-template-columns: repeat(3, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .contenedor-texto-principal > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
     }
 }
 
